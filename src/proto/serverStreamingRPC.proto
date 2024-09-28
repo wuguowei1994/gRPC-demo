@@ -1,0 +1,25 @@
+syntax = "proto3"; // Protocol version
+
+// Option configurations
+option java_package = "com.example.grpc.api";
+option java_outer_classname = "RPCDateServiceApi";
+option java_multiple_files = true;
+
+// Define package name
+package com.example.grpc.api;
+
+// Service interface. Defines request parameters and response results
+service RPCDateService {
+  rpc getDate (RPCDateRequest) returns (stream RPCDateResponse) {
+  }
+}
+
+// Define the request body
+message RPCDateRequest {
+  string userName = 1;
+}
+
+// Define the response content
+message RPCDateResponse {
+  string serverDate = 1;
+}

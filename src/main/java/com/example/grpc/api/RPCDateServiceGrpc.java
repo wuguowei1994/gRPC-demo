@@ -4,12 +4,12 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
  * <pre>
- * 服务接口.定义请求参数和相应结果
+ * Service interface. Defines request parameters and response results
  * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.45.1)",
-    comments = "Source: src/proto/helloworld.proto")
+    comments = "Source: src/proto/serverStreamingRPC.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class RPCDateServiceGrpc {
 
@@ -25,7 +25,7 @@ public final class RPCDateServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "getDate",
       requestType = com.example.grpc.api.RPCDateRequest.class,
       responseType = com.example.grpc.api.RPCDateResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<com.example.grpc.api.RPCDateRequest,
       com.example.grpc.api.RPCDateResponse> getGetDateMethod() {
     io.grpc.MethodDescriptor<com.example.grpc.api.RPCDateRequest, com.example.grpc.api.RPCDateResponse> getGetDateMethod;
@@ -34,7 +34,7 @@ public final class RPCDateServiceGrpc {
         if ((getGetDateMethod = RPCDateServiceGrpc.getGetDateMethod) == null) {
           RPCDateServiceGrpc.getGetDateMethod = getGetDateMethod =
               io.grpc.MethodDescriptor.<com.example.grpc.api.RPCDateRequest, com.example.grpc.api.RPCDateResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getDate"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -95,7 +95,7 @@ public final class RPCDateServiceGrpc {
 
   /**
    * <pre>
-   * 服务接口.定义请求参数和相应结果
+   * Service interface. Defines request parameters and response results
    * </pre>
    */
   public static abstract class RPCDateServiceImplBase implements io.grpc.BindableService {
@@ -111,7 +111,7 @@ public final class RPCDateServiceGrpc {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getGetDateMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
                 com.example.grpc.api.RPCDateRequest,
                 com.example.grpc.api.RPCDateResponse>(
@@ -122,7 +122,7 @@ public final class RPCDateServiceGrpc {
 
   /**
    * <pre>
-   * 服务接口.定义请求参数和相应结果
+   * Service interface. Defines request parameters and response results
    * </pre>
    */
   public static final class RPCDateServiceStub extends io.grpc.stub.AbstractAsyncStub<RPCDateServiceStub> {
@@ -141,14 +141,14 @@ public final class RPCDateServiceGrpc {
      */
     public void getDate(com.example.grpc.api.RPCDateRequest request,
         io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getGetDateMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
    * <pre>
-   * 服务接口.定义请求参数和相应结果
+   * Service interface. Defines request parameters and response results
    * </pre>
    */
   public static final class RPCDateServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<RPCDateServiceBlockingStub> {
@@ -165,15 +165,16 @@ public final class RPCDateServiceGrpc {
 
     /**
      */
-    public com.example.grpc.api.RPCDateResponse getDate(com.example.grpc.api.RPCDateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public java.util.Iterator<com.example.grpc.api.RPCDateResponse> getDate(
+        com.example.grpc.api.RPCDateRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getGetDateMethod(), getCallOptions(), request);
     }
   }
 
   /**
    * <pre>
-   * 服务接口.定义请求参数和相应结果
+   * Service interface. Defines request parameters and response results
    * </pre>
    */
   public static final class RPCDateServiceFutureStub extends io.grpc.stub.AbstractFutureStub<RPCDateServiceFutureStub> {
@@ -186,14 +187,6 @@ public final class RPCDateServiceGrpc {
     protected RPCDateServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new RPCDateServiceFutureStub(channel, callOptions);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.example.grpc.api.RPCDateResponse> getDate(
-        com.example.grpc.api.RPCDateRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetDateMethod(), getCallOptions()), request);
     }
   }
 
