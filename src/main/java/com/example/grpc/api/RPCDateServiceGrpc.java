@@ -9,7 +9,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.45.1)",
-    comments = "Source: src/proto/serverStreamingRPC.proto")
+    comments = "Source: src/proto/clientStreamingRPC.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class RPCDateServiceGrpc {
 
@@ -25,7 +25,7 @@ public final class RPCDateServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "getDate",
       requestType = com.example.grpc.api.RPCDateRequest.class,
       responseType = com.example.grpc.api.RPCDateResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
   public static io.grpc.MethodDescriptor<com.example.grpc.api.RPCDateRequest,
       com.example.grpc.api.RPCDateResponse> getGetDateMethod() {
     io.grpc.MethodDescriptor<com.example.grpc.api.RPCDateRequest, com.example.grpc.api.RPCDateResponse> getGetDateMethod;
@@ -34,7 +34,7 @@ public final class RPCDateServiceGrpc {
         if ((getGetDateMethod = RPCDateServiceGrpc.getGetDateMethod) == null) {
           RPCDateServiceGrpc.getGetDateMethod = getGetDateMethod =
               io.grpc.MethodDescriptor.<com.example.grpc.api.RPCDateRequest, com.example.grpc.api.RPCDateResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getDate"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -102,16 +102,16 @@ public final class RPCDateServiceGrpc {
 
     /**
      */
-    public void getDate(com.example.grpc.api.RPCDateRequest request,
+    public io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateRequest> getDate(
         io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetDateMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getGetDateMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getGetDateMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
               new MethodHandlers<
                 com.example.grpc.api.RPCDateRequest,
                 com.example.grpc.api.RPCDateResponse>(
@@ -139,10 +139,10 @@ public final class RPCDateServiceGrpc {
 
     /**
      */
-    public void getDate(com.example.grpc.api.RPCDateRequest request,
+    public io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateRequest> getDate(
         io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-          getChannel().newCall(getGetDateMethod(), getCallOptions()), request, responseObserver);
+      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
+          getChannel().newCall(getGetDateMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -161,14 +161,6 @@ public final class RPCDateServiceGrpc {
     protected RPCDateServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new RPCDateServiceBlockingStub(channel, callOptions);
-    }
-
-    /**
-     */
-    public java.util.Iterator<com.example.grpc.api.RPCDateResponse> getDate(
-        com.example.grpc.api.RPCDateRequest request) {
-      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getGetDateMethod(), getCallOptions(), request);
     }
   }
 
@@ -209,10 +201,6 @@ public final class RPCDateServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_GET_DATE:
-          serviceImpl.getDate((com.example.grpc.api.RPCDateRequest) request,
-              (io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateResponse>) responseObserver);
-          break;
         default:
           throw new AssertionError();
       }
@@ -223,6 +211,9 @@ public final class RPCDateServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_GET_DATE:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getDate(
+              (io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
