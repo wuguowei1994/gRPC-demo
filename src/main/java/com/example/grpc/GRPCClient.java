@@ -49,7 +49,7 @@ public class GRPCClient {
                 }
             };
 
-            // 开始调用服务端的getDate方法，并获取用于发送请求的requestObserver
+            // 创建双向流的请求观察者
             StreamObserver<RPCDateRequest> requestObserver = rpcDateService.getDate(responseObserver);
 
             // 客户端发送多个请求，每次发送一个用户名
