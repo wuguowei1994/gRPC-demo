@@ -9,7 +9,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.45.1)",
-    comments = "Source: src/proto/clientStreamingRPC.proto")
+    comments = "Source: src/proto/biStream.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class RPCDateServiceGrpc {
 
@@ -25,7 +25,7 @@ public final class RPCDateServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "getDate",
       requestType = com.example.grpc.api.RPCDateRequest.class,
       responseType = com.example.grpc.api.RPCDateResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
   public static io.grpc.MethodDescriptor<com.example.grpc.api.RPCDateRequest,
       com.example.grpc.api.RPCDateResponse> getGetDateMethod() {
     io.grpc.MethodDescriptor<com.example.grpc.api.RPCDateRequest, com.example.grpc.api.RPCDateResponse> getGetDateMethod;
@@ -34,7 +34,7 @@ public final class RPCDateServiceGrpc {
         if ((getGetDateMethod = RPCDateServiceGrpc.getGetDateMethod) == null) {
           RPCDateServiceGrpc.getGetDateMethod = getGetDateMethod =
               io.grpc.MethodDescriptor.<com.example.grpc.api.RPCDateRequest, com.example.grpc.api.RPCDateResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getDate"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -111,7 +111,7 @@ public final class RPCDateServiceGrpc {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getGetDateMethod(),
-            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
               new MethodHandlers<
                 com.example.grpc.api.RPCDateRequest,
                 com.example.grpc.api.RPCDateResponse>(
@@ -141,7 +141,7 @@ public final class RPCDateServiceGrpc {
      */
     public io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateRequest> getDate(
         io.grpc.stub.StreamObserver<com.example.grpc.api.RPCDateResponse> responseObserver) {
-      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getGetDateMethod(), getCallOptions()), responseObserver);
     }
   }
